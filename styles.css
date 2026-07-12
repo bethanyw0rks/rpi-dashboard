@@ -12,6 +12,8 @@
   --accent-strong: #ffffff;
 }
 
+.small { font-size: .8rem; }
+
 * {
   box-sizing: border-box;
 }
@@ -95,6 +97,8 @@ h1 {
   border-radius: 10px;
   background: var(--card);
   box-shadow: 0 12px 35px rgba(2, 6, 23, 0.24);
+  max-height: 320px; 
+  overflow: auto; 
 }
 
 .card-header h2 {
@@ -113,13 +117,13 @@ h1 {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 10px 12px;
+  padding: 0;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.035);
 }
 
 kbd {
-  padding: 6px 10px;
+  padding: 3px 5px;
   border-radius: 8px;
   background: var(--primary-darker); 
   border: var(--primary-darker) 1px solid; 
@@ -133,6 +137,11 @@ kbd {
   font-weight: 300;
   color: rgba(255, 255, 255, 0.5);
 }
+
+.shortcut-row span.small {
+  font-size: .8em; 
+}
+
 
 .icon-key {
   display: inline-flex;
