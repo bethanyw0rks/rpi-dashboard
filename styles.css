@@ -20,15 +20,20 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   color: var(--text);
   background: radial-gradient(circle, rgba(69,69,185,1) 0%, rgba(32,34,83,1) 100%);
 }
 
 .app-shell {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   margin: 0 auto;
   padding: 18px 24px;
 }
@@ -88,9 +93,12 @@ h1 {
 }
 
 .shortcut-grid {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
   column-count: 4;
   column-gap: 18px;
-  column-fill: balance;
+  column-fill: auto;
 }
 
 .card {
@@ -164,10 +172,15 @@ kbd {
 }
 
 .footer-note {
-  margin-top: 18px;
-  padding: 10px 4px 0;
-  color: var(--muted);
-  font-size: 0.95rem;
+  flex: none;
+  padding: 4px 4px 10px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.footer-note p {
+  margin: 0;
 }
 
 @media (max-width: 1200px) {
