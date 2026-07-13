@@ -112,6 +112,10 @@ h1 {
   break-inside: avoid;
 }
 
+.card[hidden] {
+  display: none;
+}
+
 .card-header h2 {
   margin: 0 0 14px;
   font-size: 1rem;
