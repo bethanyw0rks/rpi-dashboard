@@ -1,6 +1,6 @@
 # Raspberry Pi Shortcut Dashboard
 
-A polished, lightweight dashboard for displaying keyboard shortcuts on a small Raspberry Pi screen.
+A dashboard for displaying keyboard shortcuts on a small Raspberry Pi screen.
 
 ## Run locally
 
