@@ -1,4 +1,9 @@
 const dashboard = document.querySelector('.shortcut-grid');
+const refreshButton = document.querySelector('#refresh-page');
+
+refreshButton?.addEventListener('click', () => {
+  window.location.reload();
+});
 
 if (dashboard) {
   const cards = [...dashboard.querySelectorAll(':scope > .card')];

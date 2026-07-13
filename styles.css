@@ -172,6 +172,10 @@ kbd {
 }
 
 .footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   flex: none;
   padding: 4px 4px 10px;
   color: rgba(255, 255, 255, 0.72);
@@ -181,6 +185,29 @@ kbd {
 
 .footer-note p {
   margin: 0;
+}
+
+.refresh-button {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.refresh-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 @media (max-width: 1200px) {
