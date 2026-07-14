@@ -123,6 +123,11 @@ h1 {
   text-transform: uppercase;
 }
 
+.card-header h3 { 
+  color: var(--primary-darker);
+  font-weight: 700;
+}
+
 .shortcut-list {
   display: grid;
   gap: 10px;

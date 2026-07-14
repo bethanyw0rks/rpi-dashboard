@@ -76,6 +76,89 @@ function loadSettings() {
   }
 }
 
+function getStoredSettings() {
+  const stored = localStorage.getItem(SETTINGS_KEY);
+  if (!stored) return null;
+  try {
+    return JSON.parse(stored);
+  } catch (e) {
+    return null;
+  }
+}
+
+let activeAppIntervalId = null;
+const POLL_INTERVAL_MS = 60 * 1000; // 1 minute
+
+function startActiveAppPolling() {
+  if (activeAppIntervalId) {
+    clearInterval(activeAppIntervalId);
+    activeAppIntervalId = null;
+  }
+
+  const settings = getStoredSettings();
+  if (!settings || !settings.apiUrl || !settings.activeAppEndpoint) {
+    hideAllApplicationCards();
+    return;
+  }
+
+  // run immediately then schedule
+  fetchActiveApp(settings);
+  activeAppIntervalId = setInterval(() => fetchActiveApp(settings), POLL_INTERVAL_MS);
+}
+
+async function fetchActiveApp(settings) {
+  const { apiUrl, activeAppEndpoint } = settings;
+  let url;
+  try {
+    url = new URL(activeAppEndpoint, apiUrl).toString();
+  } catch (e) {
+    console.warn('Invalid API URL or endpoint', e);
+    return;
+  }
+
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) {
+      console.warn('Active app fetch failed', res.status);
+      return;
+    }
+    const data = await res.json();
+    if (data && data.name) {
+      showApplicationByName(String(data.name));
+    } else {
+      hideAllApplicationCards();
+    }
+  } catch (err) {
+    console.warn('Active app fetch error', err);
+  }
+}
+
+function showApplicationByName(activeName) {
+  const appCards = document.querySelectorAll('[data-application-card]');
+  let found = false;
+  appCards.forEach((card) => {
+    const name = card.dataset.applicationName;
+    if (name && name === activeName) {
+      card.hidden = false;
+      found = true;
+    } else {
+      card.hidden = true;
+    }
+  });
+  if (!found) {
+    // no match -> hide all application cards
+    appCards.forEach((card) => (card.hidden = true));
+  }
+}
+
+function hideAllApplicationCards() {
+  const appCards = document.querySelectorAll('[data-application-card]');
+  appCards.forEach((card) => (card.hidden = true));
+}
+
+// Start polling on load if settings are present
+startActiveAppPolling();
+
 if (dashboard) {
   const cards = [...dashboard.querySelectorAll(':scope > .card')];
   const cardById = new Map(cards.map((card) => [card.dataset.cardId, card]));
