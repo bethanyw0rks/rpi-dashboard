@@ -279,8 +279,19 @@
 
       <footer class="footer-note">
         <p>Tip: F12 or Alt+F4 to exit.</p>
+
         <button
-          class="refresh-button"
+          class="button"
+          id="settings-button"
+          type="button"
+          aria-label="Settings"
+          title="Settings"
+        >
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        </button>
+
+        <button
+          class="button"
           id="refresh-page"
           type="button"
           aria-label="Refresh page"
@@ -289,6 +300,29 @@
           <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
         </button>
       </footer>
+    </div>
+
+    <div class="modal-backdrop" id="settings-modal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <div class="modal-header">
+          <h2 id="settings-title">Settings</h2>
+          <button class="modal-close" type="button" aria-label="Close settings">×</button>
+        </div>
+        <form id="settings-form">
+          <label class="field-group" for="api-url-input">
+            <span>API URL Base</span>
+            <input id="api-url-input" name="apiUrl" type="url" placeholder="https://192.168.20.168:8010/api" autocomplete="off" />
+          </label>
+          <label class="field-group" for="active-app-endpoint-input">
+            <span>Active App Endpoint</span>
+            <input id="active-app-endpoint-input" name="activeAppEndpoint" type="text" placeholder="/active-app" autocomplete="off" />
+          </label>
+          <div class="modal-actions">
+            <button class="button button-secondary" type="button" id="cancel-settings">Cancel</button>
+            <button class="button button-primary" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>
