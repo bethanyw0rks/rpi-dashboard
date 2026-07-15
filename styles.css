@@ -128,6 +128,27 @@ h1 {
   font-weight: 700;
 }
 
+/* Highlighted styles */ 
+.card.highlight { 
+  background-color: var(--primary-darker);
+  outline: 1px solid #fff; 
+}
+.card.highlight kbd { 
+  background-color: #fff; 
+  color: var(--primary-darker);
+}
+.card.highlight .shortcut-row { 
+  background: none; 
+}
+.card.highlight h2, 
+.card.highlight h3, 
+.card.highlight .shortcut-row span { 
+  color: #fff;
+}
+.card.highlight .shortcut-row span.shortcut-plus { 
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .shortcut-list {
   display: grid;
   gap: 10px;
