@@ -17,11 +17,6 @@
     <div class="app-shell">
 
       <main class="shortcut-grid" aria-label="Shortcut cards">
-        <section class="card" data-card-id="keyboard">
-         <div class="card-header">
-            <h2>Next Up</h2>
-            <h3>AM Carpool @ 8am</h3>
-          </section>
         
         <section class="card" data-card-id="keyboard">
          <div class="card-header">
@@ -317,11 +312,19 @@
         <form id="settings-form">
           <label class="field-group" for="api-url-input">
             <span>API URL Base</span>
-            <input id="api-url-input" name="apiUrl" type="url" placeholder="https://192.168.20.168:8010/api" autocomplete="off" />
+            <input id="api-url-input" name="apiUrl" type="url" placeholder="https://192.168.20.168:8010" autocomplete="off" />
           </label>
           <label class="field-group" for="active-app-endpoint-input">
             <span>Active App Endpoint</span>
-            <input id="active-app-endpoint-input" name="activeAppEndpoint" type="text" placeholder="/active-app" autocomplete="off" />
+            <input id="active-app-endpoint-input" name="activeAppEndpoint" type="text" placeholder="/api/active-app" autocomplete="off" />
+          </label>
+          <label class="field-group" for="calendar-next-endpoint-input">
+            <span>Calendar Next Endpoint</span>
+            <input id="calendar-next-endpoint-input" name="calendarNextEndpoint" type="text" placeholder="/api/calendar-next" autocomplete="off" />
+          </label>
+          <label class="field-group" for="calendar-now-endpoint-input">
+            <span>Calendar Now Endpoint</span>
+            <input id="calendar-now-endpoint-input" name="calendarNowEndpoint" type="text" placeholder="/api/calendar-now" autocomplete="off" />
           </label>
           <div class="modal-actions">
             <button class="button button-secondary" type="button" id="cancel-settings">Cancel</button>
