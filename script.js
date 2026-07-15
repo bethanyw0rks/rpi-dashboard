@@ -236,6 +236,12 @@ function hasCalendarData(data) {
   return Object.values(data).some((value) => value !== null && value !== undefined && value !== '');
 }
 
+function clearCalendarCards() {
+  if (!dashboard) return;
+
+  document.querySelectorAll('[data-calendar-next-card="true"], [data-calendar-now-card="true"]').forEach((card) => card.remove());
+}
+
 function renderCalendarNextCard(data) {
   if (!dashboard) return;
 
@@ -281,7 +287,8 @@ function buildApiUrl(apiUrl, endpoint) {
 
 let activeAppIntervalId = null;
 let calendarIntervalId = null;
-const POLL_INTERVAL_MS = 60 * 1000; // 1 minute
+const CALENDAR_POLL_INTERVAL_MS = 60 * 1000; // 1 minute
+const ACTIVE_APP_POLL_INTERVAL_MS = 2 * 1000; // 2 seconds
 
 function startActiveAppPolling() {
   if (activeAppIntervalId) {
@@ -296,7 +303,7 @@ function startActiveAppPolling() {
   }
 
   fetchActiveApp(settings);
-  activeAppIntervalId = setInterval(() => fetchActiveApp(settings), POLL_INTERVAL_MS);
+  activeAppIntervalId = setInterval(() => fetchActiveApp(settings), ACTIVE_APP_POLL_INTERVAL_MS);
 }
 
 function startCalendarPolling() {
@@ -307,18 +314,22 @@ function startCalendarPolling() {
 
   const settings = getStoredSettings();
   if (!settings || !settings.apiUrl) {
+    clearCalendarCards();
     return;
   }
 
   const calendarEndpoints = [settings.calendarNextEndpoint, settings.calendarNowEndpoint].filter(Boolean);
   if (calendarEndpoints.length === 0) {
+    clearCalendarCards();
     return;
   }
 
+  clearCalendarCards();
   calendarEndpoints.forEach((endpoint) => fetchCalendarEndpoint(settings, endpoint));
   calendarIntervalId = setInterval(() => {
+    clearCalendarCards();
     calendarEndpoints.forEach((endpoint) => fetchCalendarEndpoint(settings, endpoint));
-  }, POLL_INTERVAL_MS);
+  }, CALENDAR_POLL_INTERVAL_MS);
 }
 
 function startPolling() {
@@ -381,20 +392,38 @@ async function fetchCalendarEndpoint(settings, endpoint) {
   }
 }
 
+function normalizeAppName(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
 function showApplicationByName(activeName) {
   const appCards = document.querySelectorAll('[data-application-card]');
+  const targetName = normalizeAppName(activeName);
   let found = false;
+
   appCards.forEach((card) => {
-    const name = card.dataset.applicationName;
-    if (name && name === activeName) {
+    const cardNames = [card.dataset.applicationName, card.dataset.cardId]
+      .filter(Boolean)
+      .map((name) => normalizeAppName(name));
+
+    const matches = cardNames.some((name) => {
+      if (!name || !targetName) return false;
+      return name === targetName || name.includes(targetName) || targetName.includes(name);
+    });
+
+    if (matches) {
       card.hidden = false;
       found = true;
     } else {
       card.hidden = true;
     }
   });
+
   if (!found) {
-    // no match -> hide all application cards
     appCards.forEach((card) => (card.hidden = true));
   }
 }
