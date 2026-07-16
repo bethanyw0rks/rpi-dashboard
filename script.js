@@ -109,6 +109,62 @@ function parseTextCards(rawValue) {
   }
 }
 
+function ensureColumnContainers() {
+  if (!dashboard) return;
+
+  const existingColumns = Array.from(dashboard.querySelectorAll(':scope > .shortcut-column'));
+  const columnsByIndex = new Map(existingColumns.map((column) => [Number(column.dataset.column), column]));
+
+  [1, 2, 3, 4].forEach((columnIndex) => {
+    if (columnsByIndex.has(columnIndex)) return;
+
+    const column = document.createElement('section');
+    column.className = 'shortcut-column';
+    column.dataset.column = String(columnIndex);
+    column.setAttribute('aria-label', `Column ${columnIndex}`);
+    dashboard.appendChild(column);
+  });
+}
+
+function getColumnContainer(columnIndex) {
+  if (!dashboard) return null;
+  const existingColumn = dashboard.querySelector(`.shortcut-column[data-column="${columnIndex}"]`);
+  if (existingColumn) return existingColumn;
+
+  ensureColumnContainers();
+  return dashboard.querySelector(`.shortcut-column[data-column="${columnIndex}"]`);
+}
+
+function appendCardToColumn(card, columnIndex) {
+  if (!card) return;
+
+  const targetColumn = getColumnContainer(columnIndex);
+  if (!targetColumn) {
+    dashboard?.appendChild(card);
+    return;
+  }
+
+  if (card.parentElement !== targetColumn) {
+    targetColumn.appendChild(card);
+  }
+}
+
+function syncColumnCards() {
+  if (!dashboard) return;
+
+  const cards = Array.from(dashboard.querySelectorAll(':scope > .card'));
+  cards.forEach((card) => {
+    if (card.dataset.applicationCard !== undefined || card.dataset.applicationName) {
+      appendCardToColumn(card, 4);
+      return;
+    }
+
+    if (card.dataset.cardId === 'calendar-next' || card.dataset.cardId === 'calendar-now' || card.dataset.calendarNextCard === 'true' || card.dataset.calendarNowCard === 'true') {
+      appendCardToColumn(card, 3);
+    }
+  });
+}
+
 function renderTextCards() {
   if (!dashboard) return;
 
@@ -146,7 +202,7 @@ function renderTextCards() {
     }
 
     card.appendChild(cardHeader);
-    dashboard.appendChild(card);
+    appendCardToColumn(card, 3);
   });
 }
 
@@ -158,6 +214,7 @@ function renderCard({
   isHighlighted = false,
   datasetKey,
   datasetValue,
+  columnIndex = 3,
 }) {
   if (!dashboard) return null;
 
@@ -197,11 +254,12 @@ function renderCard({
 
   if (existingCard) {
     existingCard.replaceChildren(cardHeader);
+    appendCardToColumn(existingCard, columnIndex);
     return existingCard;
   }
 
   card.appendChild(cardHeader);
-  dashboard.appendChild(card);
+  appendCardToColumn(card, columnIndex);
   return card;
 }
 
@@ -258,6 +316,7 @@ function renderCalendarNextCard(data) {
     subtitle: subtitleText,
     datasetKey: 'calendarNextCard',
     datasetValue: 'true',
+    columnIndex: 3,
   });
 }
 
@@ -278,6 +337,7 @@ function renderCalendarNowCard(data) {
     datasetKey: 'calendarNowCard',
     datasetValue: 'true',
     isHighlighted: true,
+    columnIndex: 3,
   });
 }
 
@@ -433,7 +493,10 @@ function hideAllApplicationCards() {
   appCards.forEach((card) => (card.hidden = true));
 }
 
+ensureColumnContainers();
+syncColumnCards();
 renderTextCards();
+syncColumnCards();
 
 // Start polling on load if settings are present
 startPolling();

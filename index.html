@@ -17,298 +17,305 @@
     <div class="app-shell">
 
       <main class="shortcut-grid" aria-label="Shortcut cards">
-        
-        <section class="card" data-card-id="keyboard">
-         <div class="card-header">
-            <h2>Keyboard</h2>
-            <div class="shortcut-list">
+        <section class="shortcut-column" data-column="1" aria-label="Column 1: Keyboard and window management">
+
+          <section class="card" data-card-id="keyboard">
+            <div class="card-header">
+              <h2>Keyboard</h2>
+              <div class="shortcut-list">
                 <div class="shortcut-row">
-                    <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> e<span class="shortcut-plus">/</span>s<span class="shortcut-plus">/</span>d<span class="shortcut-plus">/</span>f</kbd>
-                    <span>arrows</span>
+                  <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> e<span class="shortcut-plus">/</span>s<span class="shortcut-plus">/</span>d<span class="shortcut-plus">/</span>f</kbd>
+                  <span>arrows</span>
                 </div>
                 <div class="shortcut-row">
-                    <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> h<span class="shortcut-plus">/</span>n</kbd>
-                    <span>pg ↑ / pg ↓</span>
+                  <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> h<span class="shortcut-plus">/</span>n</kbd>
+                  <span>pg ↑ / pg ↓</span>
                 </div>
                 <div class="shortcut-row">
-                    <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> j<span class="shortcut-plus">/</span>k</kbd>
-                    <span>←/→  word</span>
+                  <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> j<span class="shortcut-plus">/</span>k</kbd>
+                  <span>←/→ word</span>
                 </div>
                 <div class="shortcut-row">
-                    <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> l<span class="shortcut-plus">/</span>;</kbd>
-                    <span>home / end</span>
+                  <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> l<span class="shortcut-plus">/</span>;</kbd>
+                  <span>home / end</span>
                 </div>
                 <div class="shortcut-row">
-                    <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> ⌫ </kbd>
-                    <span>backspace word</span>
+                  <kbd><i class="fa-solid fa-ellipsis"></i> <span class="shortcut-plus">+</span> ⌫ </kbd>
+                  <span>backspace word</span>
                 </div>
+              </div>
             </div>
-          </div>
           </section>
+
+          <section class="card" data-card-id="window-management">
+            <div class="card-header">
+              <h2>Window management</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> `</kbd>
+                <span>Switch windows of same app</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> Tab</kbd>
+                <span>Switch windows</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> m</kbd>
+                <span>Move display</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> ↕↔</kbd>
+                <span>Resize taller, narrower, shorter, wider</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> ↕↔</kbd>
+                <span>Move left, right, up, down</span>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="shortcut-column" data-column="2" aria-label="Column 2: General and scripts & shortcuts">
 
           <section class="card" data-card-id="general">
             <div class="card-header">
-                <h2>General</h2>
+              <h2>General</h2>
             </div>
             <div class="shortcut-list">
-	            <div class="shortcut-row">
+              <div class="shortcut-row">
                 <kbd>"chat"</kbd>
                 <span>AI Chat</span>
-                </div>
-                
-                <div class="shortcut-row">
+              </div>
+
+              <div class="shortcut-row">
                 <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> c</kbd>
                 <span>Calendar</span>
-                </div>
+              </div>
 
-                <div class="shortcut-row">
+              <div class="shortcut-row">
                 <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> m</kbd>
                 <span>Month View</span>
-                </div>
-                <div class="shortcut-row">
+              </div>
+              <div class="shortcut-row">
                 <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> g</kbd>
                 <span>Google Drive Search</span>
-                </div>
+              </div>
             </div>
+          </section>
+
+          <section class="card" data-card-id="scripts-shortcuts">
+            <div class="card-header">
+              <h2>Scripts & Shortcuts</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> a</kbd>
+                <span>AWS Portal</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd class="icon-key"><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> e</kbd>
+                <span>ECS</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> d</kbd>
+                <span>TablePlus</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> s</kbd>
+                <span>Snippets</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> j</kbd>
+                <span>Format JSON and View</span>
+              </div>
+
+              <div class="shortcut-row">
+                <kbd>"csv"</kbd>
+                <span>Format into CSV</span>
+              </div>
+            </div>
+          </section>
         </section>
 
-        <section class="card" data-card-id="scripts-shortcuts">
-          <div class="card-header">
-            <h2>Scripts & Shortcuts</h2>
-          </div>
-          <div class="shortcut-list">
-
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> a</kbd>
-              <span>AWS Portal</span>
-            </div>
-
-            <div class="shortcut-row">
-              <kbd class="icon-key"><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> e</kbd>
-              <span>ECS</span>
-            </div>
-            
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> d</kbd>
-              <span>TablePlus</span>
-            </div>
-
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> s</kbd>
-              <span>Snippets</span>
-            </div>
-
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> j</kbd>
-              <span>Format JSON and View</span>
-            </div>
-            
-            <div class="shortcut-row">
-              <kbd>"csv"</kbd>
-              <span>Format into CSV</span>
-            </div>
-          </div>
+        <section class="shortcut-column" data-column="3" aria-label="Column 3: Calendar cards">
         </section>
 
-        <section class="card" data-card-id="chrome" data-application-name="Google Chrome" data-application-card hidden>
-          <div class="card-header">
-            <h2>Chrome</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> m</kbd>
-              <span>Profile switcher</span>
+        <section class="shortcut-column" data-column="4" aria-label="Column 4: Application-specific cards">
+
+          <section class="card" data-card-id="chrome" data-application-name="Google Chrome" data-application-card hidden>
+            <div class="card-header">
+              <h2>Chrome</h2>
             </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> a</kbd>
-              <span>Search tabs</span>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> m</kbd>
+                <span>Profile switcher</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> a</kbd>
+                <span>Search tabs</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> ↔ </kbd>
+                <span>Switch tabs</span>
+              </div>
             </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> ↔ </kbd>
-              <span>Switch tabs</span>
+          </section>
+
+          <section class="card" data-card-id="tableplus" data-application-name="TablePlus" data-application-card hidden>
+            <div class="card-header">
+              <h2>TablePlus</h2>
             </div>
-          </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> K</kbd>
+                <span>Switch database</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> K</kbd>
+                <span>Switch Connection</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⏎</kbd>
+                <span>Execute SQL Code</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> R</kbd>
+                <span>Reload workspace</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-card-id="notion" data-application-name="Notion" data-application-card hidden>
+            <div class="card-header">
+              <h2>Notion</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⇧ <span class="shortcut-plus">+</span> ⌘ <span class="shortcut-plus">+</span> N</kbd>
+                <span>New window</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> 1<span class="shortcut-plus">/</span>2<span class="shortcut-plus">/</span>3</kbd>
+                <span>Heading 1/2/3</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> 4<span class="shortcut-plus">/</span>5<span class="shortcut-plus">/</span>6</kbd>
+                <span>Todo / unordered / ordered list</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> \</kbd>
+                <span>Toggle sidebar</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> Tab</kbd>
+                <span>Switch tabs</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-card-id="vscode" data-application-name="Code" data-application-card hidden>
+            <div class="card-header">
+              <h2>VSCode</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> p</kbd>
+                <span>Open command palette</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> tab </kbd>
+                <span>Switch between open tabs</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⌃ <span class="shortcut-plus">+</span> p</kbd>
+                <span>Command palette</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⌃ <span class="shortcut-plus">+</span> o</kbd>
+                <span>Filter by symbol.<br/> <span class="small">Type : to get a list of methods.</span></span>
+              </div>
+            </div>
+
+            <div class="card-header">
+              <h2 style="margin-top:10px;">Command Palette Reference</h2>
+            </div>
+
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>@</kbd>
+                <span>Jump to symbol</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>:#</kbd>
+                <span>Go to line</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>#searchTerm</kbd>
+                <span>Search in workspace</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-card-id="slack" data-application-name="Slack" data-application-card hidden>
+            <div class="card-header">
+              <h2>Slack</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> \</kbd>
+                <span>Emoji reaction</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> G</kbd>
+                <span>Search</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> M</kbd>
+                <span>Activity</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> A</kbd>
+                <span>View unreads</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-card-id="iterm" data-application-name="iTerm2" data-application-card hidden>
+            <div class="card-header">
+              <h2>iTerm</h2>
+            </div>
+            <div class="shortcut-list">
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> u</kbd>
+                <span>Clear line</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> w</kbd>
+                <span>Delete last word</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> a</kbd>
+                <span>Move to start of line</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌥ <span class="shortcut-plus">+</span> click</kbd>
+                <span>Move cursor</span>
+              </div>
+              <div class="shortcut-row">
+                <kbd>⌃ <span class="shortcut-plus">+</span> r</kbd>
+                <span>Search term</span>
+              </div>
+            </div>
+          </section>
         </section>
-
-        <section class="card" data-card-id="tableplus" data-application-name="TablePlus" data-application-card hidden>
-          <div class="card-header">
-            <h2>TablePlus</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> K</kbd>
-              <span>Switch database</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> K</kbd>
-              <span>Switch Connection</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⏎</kbd>
-              <span>Execute SQL Code</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> R</kbd>
-              <span>Reload workspace</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" data-card-id="window-management">
-          <div class="card-header">
-            <h2>Window management</h2>
-          </div>
-          <div class="shortcut-list">
-
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> `</kbd>
-              <span>Switch windows of same app</span>
-            </div>
-
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> Tab</kbd>
-              <span>Switch windows</span>
-            </div>
-
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> m</kbd>
-              <span>Move display</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> ↕↔</kbd>
-              <span>Resize taller, narrower, shorter, wider</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd><i class="fa-solid fa-mug-hot"></i> <span class="shortcut-plus">+</span> ↕↔</kbd>
-              <span>Move left, right, up, down</span>
-            </div>
-            
-          </div>
-        </section>
-
-        <section class="card" data-card-id="notion" data-application-name="Notion" data-application-card hidden>
-          <div class="card-header">
-            <h2>Notion</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⇧ <span class="shortcut-plus">+</span> ⌘ <span class="shortcut-plus">+</span> N</kbd>
-              <span>New window</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> 1<span class="shortcut-plus">/</span>2<span class="shortcut-plus">/</span>3</kbd>
-              <span>Heading 1/2/3</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⌥ <span class="shortcut-plus">+</span> 4<span class="shortcut-plus">/</span>5<span class="shortcut-plus">/</span>6</kbd>
-              <span>Todo / unordered / ordered list</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> \</kbd>
-              <span>Toggle sidebar</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> Tab</kbd>
-              <span>Switch tabs</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" data-card-id="vscode" data-application-name="Code" data-application-card hidden>
-          <div class="card-header">
-            <h2>VSCode</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> p</kbd>
-              <span>Open command palette</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> tab </kbd>
-              <span>Switch between open tabs</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⌃ <span class="shortcut-plus">+</span> p</kbd>
-              <span>Command palette</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⌃ <span class="shortcut-plus">+</span> o</kbd>
-              <span>Filter by symbol.<br/> <span class="small">Type : to get a list of methods.</span></span>
-            </div>
-          </div>
-
-          <div class="card-header">
-            <h2 style="margin-top:10px;">Command Palette Reference</h2>
-          </div>
-
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>@</kbd>
-              <span>Jump to symbol</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>:#</kbd>
-              <span>Go to line</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>#searchTerm</kbd>
-              <span>Search in workspace</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" data-card-id="slack"  data-application-name="Slack" data-application-card hidden>
-          <div class="card-header">
-            <h2>Slack</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> \</kbd>
-              <span>Emoji reaction</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> G</kbd>
-              <span>Search</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> M</kbd>
-              <span>Activity</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌘ <span class="shortcut-plus">+</span> ⇧ <span class="shortcut-plus">+</span> A</kbd>
-              <span>View unreads</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" data-card-id="iterm"  data-application-name="iTerm2" data-application-card hidden>
-          <div class="card-header">
-            <h2>iTerm</h2>
-          </div>
-          <div class="shortcut-list">
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> u</kbd>
-              <span>Clear line</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> w</kbd>
-              <span>Delete last word</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> a</kbd>
-              <span>Move to start of line</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌥ <span class="shortcut-plus">+</span> click</kbd>
-              <span>Move cursor</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd>⌃ <span class="shortcut-plus">+</span> r</kbd>
-              <span>Search term</span>
-            </div>
-          </div>
-        </section>
-
       </main>
 
       <footer class="footer-note">
