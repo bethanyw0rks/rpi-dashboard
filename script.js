@@ -159,7 +159,7 @@ function syncColumnCards() {
       return;
     }
 
-    if (card.dataset.cardId === 'calendar-next' || card.dataset.cardId === 'calendar-now' || card.dataset.calendarNextCard === 'true' || card.dataset.calendarNowCard === 'true') {
+    if (card.dataset.cardId === 'calendar-next' || card.dataset.cardId === 'calendar-now' || card.dataset.cardId === 'calendar-none' || card.dataset.calendarNextCard === 'true' || card.dataset.calendarNowCard === 'true' || card.dataset.calendarNoneCard === 'true') {
       appendCardToColumn(card, 3);
     }
   });
@@ -297,7 +297,24 @@ function hasCalendarData(data) {
 function clearCalendarCards() {
   if (!dashboard) return;
 
-  document.querySelectorAll('[data-calendar-next-card="true"], [data-calendar-now-card="true"]').forEach((card) => card.remove());
+  document.querySelectorAll('[data-calendar-next-card="true"], [data-calendar-now-card="true"], [data-calendar-none-card="true"]').forEach((card) => card.remove());
+}
+
+function removeCalendarNoneCard() {
+  document.querySelector('[data-calendar-none-card="true"]')?.remove();
+}
+
+function renderCalendarNoneCard() {
+  if (!dashboard) return;
+
+  renderCard({
+    cardId: 'calendar-none',
+    title: 'All Done!',
+    subtitle: 'No more meetings today.',
+    datasetKey: 'calendarNoneCard',
+    datasetValue: 'true',
+    columnIndex: 3,
+  });
 }
 
 function renderCalendarNextCard(data) {
@@ -309,6 +326,7 @@ function renderCalendarNextCard(data) {
     return;
   }
 
+  removeCalendarNoneCard();
   const subtitleText = buildCalendarNextSubtitle(data);
   renderCard({
     cardId: 'calendar-next',
@@ -329,6 +347,7 @@ function renderCalendarNowCard(data) {
     return;
   }
 
+  removeCalendarNoneCard();
   const subtitleText = buildCalendarNextSubtitle(data);
   renderCard({
     cardId: 'calendar-now',
@@ -347,6 +366,7 @@ function buildApiUrl(apiUrl, endpoint) {
 
 let activeAppIntervalId = null;
 let calendarIntervalId = null;
+let calendarPollId = 0;
 const CALENDAR_POLL_INTERVAL_MS = 60 * 1000; // 1 minute
 const ACTIVE_APP_POLL_INTERVAL_MS = 2 * 1000; // 2 seconds
 
@@ -374,22 +394,55 @@ function startCalendarPolling() {
 
   const settings = getStoredSettings();
   if (!settings || !settings.apiUrl) {
+    calendarPollId += 1;
     clearCalendarCards();
     return;
   }
 
-  const calendarEndpoints = [settings.calendarNextEndpoint, settings.calendarNowEndpoint].filter(Boolean);
+  const calendarEndpoints = [
+    { type: 'next', endpoint: settings.calendarNextEndpoint },
+    { type: 'now', endpoint: settings.calendarNowEndpoint },
+  ].filter(({ endpoint }) => Boolean(endpoint));
   if (calendarEndpoints.length === 0) {
+    calendarPollId += 1;
     clearCalendarCards();
     return;
   }
 
+  pollCalendarEndpoints(settings, calendarEndpoints);
+  calendarIntervalId = setInterval(
+    () => pollCalendarEndpoints(settings, calendarEndpoints),
+    CALENDAR_POLL_INTERVAL_MS,
+  );
+}
+
+async function pollCalendarEndpoints(settings, calendarEndpoints) {
+  const pollId = ++calendarPollId;
   clearCalendarCards();
-  calendarEndpoints.forEach((endpoint) => fetchCalendarEndpoint(settings, endpoint));
-  calendarIntervalId = setInterval(() => {
-    clearCalendarCards();
-    calendarEndpoints.forEach((endpoint) => fetchCalendarEndpoint(settings, endpoint));
-  }, CALENDAR_POLL_INTERVAL_MS);
+
+  const results = await Promise.all(
+    calendarEndpoints.map(async ({ type, endpoint }) => {
+      const result = await fetchCalendarEndpoint(settings, endpoint);
+
+      if (pollId === calendarPollId && result.ok) {
+        if (type === 'next') {
+          renderCalendarNextCard(result.data);
+        } else {
+          renderCalendarNowCard(result.data);
+        }
+      }
+
+      return result;
+    }),
+  );
+
+  if (pollId !== calendarPollId) return;
+
+  const allRequestsSucceeded = results.every((result) => result.ok);
+  const hasEvents = results.some((result) => result.ok && hasCalendarData(result.data));
+  if (allRequestsSucceeded && !hasEvents) {
+    renderCalendarNoneCard();
+  }
 }
 
 function startPolling() {
@@ -431,24 +484,21 @@ async function fetchCalendarEndpoint(settings, endpoint) {
     url = buildApiUrl(apiUrl, endpoint);
   } catch (e) {
     console.warn('Invalid calendar API URL or endpoint', e);
-    return;
+    return { ok: false };
   }
 
   try {
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) {
       console.warn('Calendar endpoint fetch failed', res.status, endpoint);
-      return;
+      return { ok: false };
     }
 
     const data = await res.json();
-    if (endpoint === settings.calendarNextEndpoint) {
-      renderCalendarNextCard(data);
-    } else if (endpoint === settings.calendarNowEndpoint) {
-      renderCalendarNowCard(data);
-    }
+    return { ok: true, data };
   } catch (err) {
     console.warn('Calendar endpoint fetch error', err, endpoint);
+    return { ok: false };
   }
 }
 
